@@ -5,7 +5,7 @@ export default class Player {
         this.location = new Point(0, 0);
         this.healthPoints = 100;
         this.attackPoints = 10;
-        this.sign = '*';
+        this.sign = '[*]';
     }
     setHealthPoint(x){
         this.healthPoints = x;

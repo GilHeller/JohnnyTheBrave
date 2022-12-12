@@ -6,6 +6,8 @@ export default class Item {
         this.value = value;
         this.location = new Point(x, y);
     }
+    static sign = "[@]";
+
     getType() {
         return this.type;
     }
