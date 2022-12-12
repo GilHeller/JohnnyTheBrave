@@ -3,9 +3,14 @@ export default class Point {
         this.x = x;
         this.y = y;
     }
-
     setPoint(x, y){
         this.x = x;
         this.y = y;
+    }
+    getX() {
+        return this.x;
+    }
+    getY() {
+        return this.y;
     }
 }

@@ -1,16 +1,14 @@
 import Point from "./point.js";
+import Player from "./player.js";
 
-export default class Board {
+export default class GameBoard {
     constructor() {
-        this.boardSize = 5
-        this.playerLocation = new Point(0, 0);
-        this.playerSign = "*";
+        this.boardSize = 5;
+        this.player = new Player(0, 0);
         this.endLocation = new Point(this.boardSize - 1, this.boardSize - 1);
-        this.endLocation = "X";
         this.board = this.initBoard()
     }
 
-    
     setPlayerLocation(x, y) {
         this.board[this.playerLocation.y][this.playerLocation.x] = "[ ]";
         this.playerLocation.setPoint(x, y);
@@ -33,4 +31,3 @@ export default class Board {
         console.log(boardString);
     }
 }
-
