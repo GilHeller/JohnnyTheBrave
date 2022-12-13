@@ -1,4 +1,3 @@
-import Point from "./point.js";
 import Item from "./item.js";
 
 export default class Monster extends Item{
@@ -6,7 +5,6 @@ export default class Monster extends Item{
         super(x, y, "Monster", 5);
         this.healthPoint = 50;
         this.attackPoint = 7;
-        // this.location = new Point(x,y); 
     }
     setHealthPoint(x){
         this.healthPoint = x;
@@ -20,7 +18,4 @@ export default class Monster extends Item{
     getAttackPoint(){
         return this.attackPoint;
     }
-    // getLocation(){
-    //     return this.location;
-    // }
 }

@@ -1,52 +1,60 @@
 import Point from "./point.js";
 import Player from "./player.js";
 import Monster from "./monster.js";
+import Slot from "./slot.js";
 
 export default class GameBoard {
     constructor() {
         this.boardSize = 5;
         this.nuberOfMonsters = 5
         this.emptySlot = "[ ]";
-        this.monsters = new Array(this.nuberOfMonsters);
+        // this.monsters = new Array(this.nuberOfMonsters);
         this.player = new Player(0, 0);
         this.endLocation = new Point(this.boardSize - 1, this.boardSize - 1);
-    
-        for (let index = 0; index < this.monsters.length; index++) {
-            this.monsters[index] = new Monster(
-                Math.floor(Math.random() * this.boardSize),
-                Math.floor(Math.random() * this.boardSize)
-            );
-        }
 
-        this.board = this.initBoard()
-        console.log(this.monsters);
+        this.initBoard();
+        this.initMonsters();
+        this.initPlayer();
     }
 
     setPlayerLocation(x, y) {
-        this.board[this.player.location.y][this.player.location.x] = this.emptySlot;
         this.player.location.setPoint(x, y);
-        this.board[this.player.location.y][this.player.location.x] = this.player.sign;
         this.printBoard();
     }
 
-    initBoard() {
-        let board = Array(this.boardSize);
-        for (let row = 0; row < board.length; row++) {
-            board[row] = new Array(this.boardSize)
-            board[row].fill(this.emptySlot)
+    initPlayer() {
+        this.board[this.player.location.x][this.player.location.y] = this.player;
+    }
+
+    initMonsters() {
+        for (let index = 0; index < this.nuberOfMonsters; index++) {
+            const monsterX = Math.floor(Math.random() * this.boardSize);
+            const monsterY = Math.floor(Math.random() * this.boardSize);
+            const monster = new Monster(monsterX, monsterY);
+            // this.monsters[index] = monster;
+            this.board[monsterX][monsterY] = monster
         }
-        this.monsters.map(monster => {
-            console.log(monster.location.getY());
-            board[monster.location.getY()][monster.location.getX()] = Monster.sign;
-        })
-        board[this.player.location.y][this.player.location.x] = this.player.sign;
-        return board
+    }
+
+    initBoard() {
+        const board = []
+        for (let row = 0; row < this.boardSize; row++) {
+            board[row] = []
+            for (let column = 0; column < this.boardSize; column++) {
+                board[row][column] = new Slot(row, column);
+                if (column === 0 && row === 0) {
+                    board[row][column] = this.player
+                }
+            }
+        }
+        this.board = board;
     }
 
     printBoard() {
-        // console.clear();
         console.log("------------------------------------------------------");
-        const boardString = this.board.map(row => row.join(" | ")).join("\n");
+        const arrayOfRowsStrings = this.board.map(row => row.map(slot => slot.getSign()).join(" | "))
+        const boardString = arrayOfRowsStrings.join("\n");
         console.log(boardString);
+        console.log(`HP: ${this.player.getHealthPoint()} | Attack: ${this.player.getAttackPoint()}`);
     }
 }

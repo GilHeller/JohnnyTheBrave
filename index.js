@@ -5,4 +5,4 @@ import Monster from "./src/monster.js";
 
 const b = new GameBoard();
 b.printBoard()
-b.setPlayerLocation(0,1);
+// b.setPlayerLocation(0,1);

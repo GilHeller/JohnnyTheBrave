@@ -1,21 +1,18 @@
-import Point from "./point.js";
+import Slot from "./slot.js";
 
-export default class Item {
+export default class Item extends Slot{
     constructor(x, y, type, value) {
+        super(x, y)
         this.type = type;
         this.value = value;
-        this.location = new Point(x, y);
+        this.sign = "[@]";
     }
-    static sign = "[@]";
 
     getType() {
         return this.type;
     }
+    
     getValue() {
         return this.value;
     }
-    getLocation(){
-        return this.location;
-    }
-
 }

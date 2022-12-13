@@ -1,8 +1,8 @@
-import Point from "./point.js";
+import Slot from "./slot.js";
 
-export default class Player {
+export default class Player extends Slot{
     constructor (){
-        this.location = new Point(0, 0);
+        super(0, 0)
         this.healthPoints = 100;
         this.attackPoints = 10;
         this.sign = '[*]';
@@ -25,8 +25,8 @@ export default class Player {
     getLocation(){
         return this.location;
     }
-    getSign(){
-        return this.sign;
-    }
+    // getSign(){
+    //     return this.sign;
+    // }
 
 }
