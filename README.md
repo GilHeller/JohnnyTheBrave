@@ -18,3 +18,8 @@ Can you arrive at the destination point before getting killed by monsters?
 
 - When the player will move into a slot with a monster on it he will enter combat. For each combat turn, the player will attack the monster, and the monster will attack the player and vice versa. The battle will end when some one will run out of hp.
 
+## Run project:
+- Download nodejs
+- Clone the project
+- In the project directory, open Terminal and run `npm start`.
+- Start to play!
