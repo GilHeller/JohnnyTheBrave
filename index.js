@@ -4,5 +4,5 @@ import Point from "./src/point.js";
 import Monster from "./src/monster.js";
 
 const b = new GameBoard();
-b.printBoard()
+b.printBoard();
 // b.setPlayerLocation(0,1);

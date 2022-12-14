@@ -25,8 +25,8 @@ export default class Player extends Slot{
     getLocation(){
         return this.location;
     }
-    // getSign(){
-    //     return this.sign;
-    // }
+    getSign(){
+        return this.sign;
+    }
 
 }
