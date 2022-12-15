@@ -13,4 +13,9 @@ export default class Point {
     getY() {
         return this.y;
     }
+
+    isSamePoint(point){
+    // 
+        return this.x === point.getX() && this.y === point.getY();
+    }
 }
