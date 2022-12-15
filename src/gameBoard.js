@@ -84,19 +84,12 @@ export default class GameBoard {
         console.log(`HP: ${this.player.getHealthPoint()} | Attack: ${this.player.getAttackPoint()}`);
     }
 
-    isGameOver(key){
-        if (key == -1)
-            console.log(`YOU ARE A LOSER ⚰💔`);
+    isGameOver(){
+        console.log(`YOU ARE A LOSER ⚰💔`);
     }
 
-    MonsterDefated(key){
-    // key can be:
-    // # key = 0 => means player kill monster
-    // otherwise function call to isGameOver => player killed by monster :(
-        if (key == 0)
-            console.log(`KEEP GOING CHAMP!🥇`);
-        else
-            this.isGameOver();
+    monsterDefated(){
+        console.log(`Monster defated, KEEP GOING CHAMP!🥇`);
     }
 
     playerAcheivedEndPoint(){
@@ -109,13 +102,9 @@ export default class GameBoard {
     printMyPickup(item){
     // Des: check which item player pick from board and print a message for knowing him
     // TO DO: get from Gil a list of relvant item
-        if (item.getType() == X && item.getValue == X)
-            console.log(`_______________`);
-        if (item.getType() == X && item.getValue == X)
-            console.log(`_______________`);
-        if (item.getType() == X && item.getValue == X)
-            console.log(`_______________`);
-        if (item.getType() == X && item.getValue == X)
-            console.log(`_______________`);
+        if (item.getValue() > 0)
+            console.log(`YOU GOT POWER`);
+        if (item.getValue() < 0)
+            console.log(`YOU LOST POWER`);
     }
 }
