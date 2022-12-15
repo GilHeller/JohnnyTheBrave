@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/GilHeller/JohnnyTheBrave/issues"
   },
-  "homepage": "https://github.com/GilHeller/JohnnyTheBrave#readme"
+  "homepage": "https://github.com/GilHeller/JohnnyTheBrave#readme",
+  "dependencies": {
+    "requirejs": "^2.3.6"
+  }
 }

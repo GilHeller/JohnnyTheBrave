@@ -1,6 +1,7 @@
 import Player from "./player.js";
 import Monster from "./monster.js";
 import Slot from "./slot.js";
+import Combat from "./combat.js";
 import EndSlot from "./endSlot.js";
 import Item from "./item.js";
 
@@ -15,6 +16,10 @@ export default class GameBoard {
         this.initSurprises();
         this.initEndPoint();
         this.initPlayer();
+    }
+
+    getPlayer(){
+        return this.player;
     }
 
     setPlayerLocation(x, y) {
@@ -77,5 +82,29 @@ export default class GameBoard {
         const boardString = arrayOfRowsStrings.join("\n");
         console.log(boardString);
         console.log(`HP: ${this.player.getHealthPoint()} | Attack: ${this.player.getAttackPoint()}`);
+    }
+
+    isGameOver(){
+        console.log(`YOU ARE A LOSER ⚰💔`);
+    }
+
+    monsterDefated(){
+        console.log(`Monster defated, KEEP GOING CHAMP!🥇`);
+    }
+
+    playerAcheivedEndPoint(){
+    //
+    // TO DO: change foramt to new point
+        if(b.getPlayer().getLocation().isSamePoint(new Point(this.boardSize,this.boardSize)))
+            console.log(`YOU ROCK WINNER 🚀`);
+    }
+
+    printMyPickup(item){
+    // Des: check which item player pick from board and print a message for knowing him
+    // TO DO: get from Gil a list of relvant item
+        if (item.getValue() > 0)
+            console.log(`YOU GOT POWER`);
+        if (item.getValue() < 0)
+            console.log(`YOU LOST POWER`);
     }
 }
