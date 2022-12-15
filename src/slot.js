@@ -10,7 +10,7 @@ export default class Slot {
         return this.location;
     }
 
-    getSign(){
-        return this.sign;
-    }
+    // getSign(){
+    //     return this.sign;
+    // }
 }

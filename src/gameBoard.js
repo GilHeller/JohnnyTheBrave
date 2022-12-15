@@ -1,20 +1,20 @@
-import Point from "./point.js";
 import Player from "./player.js";
 import Monster from "./monster.js";
 import Slot from "./slot.js";
 import Combat from "./combat.js";
+import EndSlot from "./endSlot.js";
+import Item from "./item.js";
 
 export default class GameBoard {
     constructor() {
         this.boardSize = 5;
-        this.nuberOfMonsters = 5
-        this.emptySlot = "[ ]";
-        // this.monsters = new Array(this.nuberOfMonsters);
+        this.nuberOfSuprises = 5;
         this.player = new Player(0, 0);
-        this.endLocation = new Point(this.boardSize - 1, this.boardSize - 1);
-
+        this.endPoint = new EndSlot(this.boardSize - 1, this.boardSize - 1);
+        
         this.initBoard();
-        this.initMonsters();
+        this.initSurprises();
+        this.initEndPoint();
         this.initPlayer();
     }
 
@@ -31,13 +31,30 @@ export default class GameBoard {
         this.board[this.player.location.x][this.player.location.y] = this.player;
     }
 
-    initMonsters() {
-        for (let index = 0; index < this.nuberOfMonsters; index++) {
-            const monsterX = Math.floor(Math.random() * this.boardSize);
-            const monsterY = Math.floor(Math.random() * this.boardSize);
-            const monster = new Monster(monsterX, monsterY);
-            // this.monsters[index] = monster;
-            this.board[monsterX][monsterY] = monster
+    initEndPoint(){
+        this.board[this.endPoint.location.x][this.endPoint.location.y] = this.endPoint;
+    }
+
+    randomSurprise(x, y) {
+        const numOfSurprisesTypes = 3;
+        const randomSurpriseNumber = Math.floor(Math.random() * numOfSurprisesTypes);
+        switch(randomSurpriseNumber){
+            case 0:
+                return new Monster(x, y);
+            case 1:
+                return new Item(x, y, "good", 5);
+            case 2:
+                return new Item(x, y, "bad", -5);
+            default:
+                console.error(`Error: expected 1/2/3 but got ${randomSurpriseNumber}`);
+        }
+    }
+
+    initSurprises() {
+        for (let index = 0; index <= this.nuberOfSuprises; index++) {
+            const supriseX = Math.floor(Math.random() * this.boardSize);
+            const supriseY = Math.floor(Math.random() * this.boardSize);
+            this.board[supriseX][supriseY] = this.randomSurprise(supriseX, supriseY);
         }
     }
 
@@ -50,6 +67,9 @@ export default class GameBoard {
                 if (column === 0 && row === 0) {
                     board[row][column] = this.player
                 }
+                else if (column === this.boardSize - 1 && row === this.boardSize - 1) {
+                    board[row][column] = this.endPoint
+                }
             }
         }
         this.board = board;
@@ -57,7 +77,8 @@ export default class GameBoard {
 
     printBoard() {
         console.log("------------------------------------------------------");
-        const arrayOfRowsStrings = this.board.map(row => row.map(slot => slot.getSign()).join(" | "))
+        // console.clear();
+        const arrayOfRowsStrings = this.board.map(row => row.map(slot => slot.sign).join(" | "))
         const boardString = arrayOfRowsStrings.join("\n");
         console.log(boardString);
         console.log(`HP: ${this.player.getHealthPoint()} | Attack: ${this.player.getAttackPoint()}`);

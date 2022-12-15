@@ -5,6 +5,7 @@ export default class Monster extends Item{
         super(x, y, "Monster", 5);
         this.healthPoint = 50;
         this.attackPoint = 7;
+        this.sign = "[@]";
     }
     setHealthPoint(x){
         this.healthPoint = x;

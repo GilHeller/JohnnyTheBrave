@@ -17,11 +17,3 @@ while (notfinished){
     
     
 }
-
-
-
-
-
-
-
-
