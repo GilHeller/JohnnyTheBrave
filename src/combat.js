@@ -6,6 +6,9 @@ export default class Combat{
     constructor (player,monster){
         this.player = player;
         this.monster = monster;
+        this.newComabat = false;
+        console.log('Let the games begin');
+        console.log("FIGHT");
     }
 
     getPlayer(){
@@ -37,44 +40,12 @@ export default class Combat{
     }
 
     startCombat(){
-        console.log(`NEW COMBAT`);
-        console.log(`Click on enter button to start the combat\n`);
+        if (this.newCombat){
+            console.log(`NEW COMBAT`);
+            console.log(`Click on enter button to start the combat\n`);
+            this.newComabat = false;
+        }
     }
-    
-    startPunch(){
-        let randomBeginner = Math.floor(Math.random() * 2);
-        switch(randomBeginner){
-            case 0 :
-                while (this.player.getHealthPoint() > 0 && this.monster.getHealthPoint() > 0){
-                    this.punchPlayer();
-                    if(this.checkPlayerHP()){
-                        document.addEventListener('keyup',event => {
-                            if (event.code === 'Space'){
-                                console.loglog('Space Pressed')
-                            }
-                        });
-                        this.punchMonster();
-                    }
-                    else return -1; 
-                }
-                break;
-            case 1:
-                while (this.player.getHealthPoint() > 0 && this.monster.getHealthPoint() > 0){
-                    document.addEventListener('keyup',event => {
-                        if (event.code === 'Space'){
-                            console.loglog('Space Pressed')
-                        }
-                    });
-                    this.punchMonster();
-                    if (this.checkMonsterHP()){
-
-                        this.punchPlayer();
-                    }
-                    else return 0;
-                }
-                break;
-        }   
-    }   
 } 
     
 

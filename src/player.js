@@ -28,5 +28,4 @@ export default class Player extends Slot{
     getSign(){
         return this.sign;
     }
-
 }
