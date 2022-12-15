@@ -2,6 +2,7 @@ import Point from "./point.js";
 import Player from "./player.js";
 import Monster from "./monster.js";
 import Slot from "./slot.js";
+import Combat from "./combat.js";
 
 export default class GameBoard {
     constructor() {
@@ -15,6 +16,10 @@ export default class GameBoard {
         this.initBoard();
         this.initMonsters();
         this.initPlayer();
+    }
+
+    getPlayer(){
+        return this.player;
     }
 
     setPlayerLocation(x, y) {
@@ -56,5 +61,40 @@ export default class GameBoard {
         const boardString = arrayOfRowsStrings.join("\n");
         console.log(boardString);
         console.log(`HP: ${this.player.getHealthPoint()} | Attack: ${this.player.getAttackPoint()}`);
+    }
+
+    isGameOver(key){
+        if (key == -1)
+            console.log(`YOU ARE A LOSER ⚰💔`);
+    }
+
+    MonsterDefated(key){
+    // key can be:
+    // # key = 0 => means player kill monster
+    // otherwise function call to isGameOver => player killed by monster :(
+        if (key == 0)
+            console.log(`KEEP GOING CHAMP!🥇`);
+        else
+            this.isGameOver();
+    }
+
+    playerAcheivedEndPoint(){
+    //
+    // TO DO: change foramt to new point
+        if(b.getPlayer().getLocation().isSamePoint(new Point(this.boardSize,this.boardSize)))
+            console.log(`YOU ROCK WINNER 🚀`);
+    }
+
+    printMyPickup(item){
+    // Des: check which item player pick from board and print a message for knowing him
+    // TO DO: get from Gil a list of relvant item
+        if (item.getType() == X && item.getValue == X)
+            console.log(`_______________`);
+        if (item.getType() == X && item.getValue == X)
+            console.log(`_______________`);
+        if (item.getType() == X && item.getValue == X)
+            console.log(`_______________`);
+        if (item.getType() == X && item.getValue == X)
+            console.log(`_______________`);
     }
 }
