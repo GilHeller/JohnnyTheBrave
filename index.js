@@ -9,11 +9,12 @@ const b = new GameBoard();
 // console.log(readline);
 // readline.emitKeypressEvents(process.stdin.on("data", (d) => console.log(d)));
 process.stdin.on("data", (d) => {
-    console.log(d)
+    console.log(d.at(0))
     b.printBoard();
-
+    process.exit()
     // process.exit();
 })
+console.log("hi");
 // while (true) {
     
     // readline.emitKeypressEvents(process.stdin.on("data", (d) => console.log(d)));
@@ -24,3 +25,4 @@ process.stdin.on("data", (d) => {
     // });
 // }
 // b.setPlayerLocation(0,1);
+ 
